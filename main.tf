@@ -11,8 +11,10 @@ resource "aws_ssm_parameter" "params" {
 
 variable "parameters" {
   default = [
+    ### jenkins password
+    { name = "jenkins_password", value = "@123Chaitu", type = "String" },
     ### cloudflare
-    {name = "api_token", value = "S9KK4auCcLL7ScEswtZQgCWQ-nj8Tn3NKkQCVOnx", type = "String"},
+    {name = "api_token", value = "S9KK4auCcLL7ScEswtZQgCWQ-nj8Tn3NKkQCVOnx", type = "String"}
 
 
 
