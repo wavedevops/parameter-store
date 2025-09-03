@@ -6,23 +6,21 @@ resource "aws_ssm_parameter" "params" {
 }
 
 
-# String
-#  SecureString
 
 variable "parameters" {
   default = [
-    ### jenkins password
-    { name = "jenkins_password", value = "@123Chaitu", type = "String" },
-    ### cloudflare
-    {name = "api_token", value = "S9KK4auCcLL7ScEswtZQgCWQ-nj8Tn3NKkQCVOnx", type = "String"}
+    # frontend
+    { name = "dev.frontend.catalogue_url", value = "http://catalogue-dev.durgasri.in:8080/", type = "String" },
+    { name = "dev.frontend.user_url", value = "http://user-dev.durgasri.in:8080/", type = "String" },
+    { name = "dev.frontend.cart_url", value = "http://cart-dev.durgasri.in:8080/", type = "String" },
+    { name = "dev.frontend.shipping_url", value = "http://shipping-dev.durgasri.in:8080/", type = "String" },
+    { name = "dev.frontend.payment_url", value = "http://payment-dev.durgasri.in:8080/", type = "String" },
+    # catalogue
+    { name = "dev.catalogue.mongo_host", value = "mongodb-dev.durgasri.in", type = "String" },
+    { name = "dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.durgasri.in:27017/catalogue", type = "String" },
 
 
-
-    ### expense-ansible-parameters
-#     {name = "expense.frontend.backend_url", value = "http://backend.chowdary.cloud:8080/", type = "String"}, # frontend
-#     {name = "expense.backend.DB_HOST", value = "mysql.chowdary.cloud", type = "String"},                     # backend
-#     {name = "expense.backend.DB_PASS", value = "ExpenseApp@1", type = "SecureString"},                          # backend
-#     {name = "expense.mysql.DB_PASS", value = "ExpenseApp@1", type = "SecureString"},                             # mysql
 
   ]
 }
+# {{ lookup('aws_ssm', '{{ env }}.catalogue.mongo_url', region='us-east-1' ) }}
